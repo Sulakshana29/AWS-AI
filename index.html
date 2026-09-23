@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWS AI Practitioner Study Hub | AIF-C01 Certification Prep</title>
+  <meta name="description" content="Comprehensive study guide for the AWS Certified AI Practitioner (AIF-C01) exam. Deep-dive into all 5 domains with interactive progress tracking, flashcards, and AWS services reference." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23FF9900'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='18'>☁️</text></svg>" />
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">
+      <div class="nav-logo">☁️</div>
+      <span class="nav-title">AWS AI <span>Study Hub</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#dashboard">Progress</a></li>
+      <li><a href="#domains">Domains</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#planner">Study Plan</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-sm btn-outline" id="open-flashcards-btn">🃏 Flashcards</button>
+      <button class="btn-sm btn-primary" onclick="document.getElementById('domains').scrollIntoView({behavior:'smooth'})">Start Studying</button>
+    </div>
+    <button class="nav-hamburger" id="hamburger-btn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section id="hero">
+  <canvas id="particle-canvas"></canvas>
+  <div class="hero-content container">
+    <!-- Left: Copy -->
+    <div class="hero-left">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        AIF-C01 · Exam Prep
+      </div>
+      <h1 class="hero-title">
+        Master the<br/>
+        <span class="gradient-text">AWS AI Practitioner</span><br/>
+        Certification
+      </h1>
+      <p class="hero-subtitle">
+        A premium, interactive study companion covering all 5 exam domains in depth.
+        Track your progress, study with flashcards, and reference every AWS AI service — all in one place.
+      </p>
+      <div class="hero-cta-group">
+        <a href="#domains" class="btn-hero btn-hero-primary">
+          📖 Open Domains
+        </a>
+        <button class="btn-hero btn-hero-ghost" id="hero-flashcard-btn">
+          🃏 Practice Flashcards
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-value">5</span>
+          <span class="hero-stat-label">Domains</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">65</span>
+          <span class="hero-stat-label">Questions</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">90</span>
+          <span class="hero-stat-label">Minutes</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">700</span>
+          <span class="hero-stat-label">Pass Score</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Domain weights card -->
+    <div class="hero-right">
+      <div class="hero-card">
+        <p class="hero-card-title">📊 Exam Domain Weights</p>
+        <div class="domain-weights-list">
+          <div class="domain-weight-item">
+            <div class="domain-weight-header">
+              <span class="domain-weight-name">D1: Fundamentals of AI &amp; ML</span>
+              <span class="domain-weight-pct d1">20%</span>
+            </div>
+            <div class="domain-bar-track"><div class="domain-bar-fill d1" data-width="20"></div></div>
+          </div>
+          <div class="domain-weight-item">
+            <div class="domain-weight-header">
+              <span class="domain-weight-name">D2: Fundamentals of Generative AI</span>
+              <span class="domain-weight-pct d2">24%</span>
+            </div>
+            <div class="domain-bar-track"><div class="domain-bar-fill d2" data-width="24"></div></div>
+          </div>
+          <div class="domain-weight-item">
+            <div class="domain-weight-header">
+              <span class="domain-weight-name">D3: Applications of Foundation Models ⭐</span>
+              <span class="domain-weight-pct d3">28%</span>
+            </div>
+            <div class="domain-bar-track"><div class="domain-bar-fill d3" data-width="28"></div></div>
+          </div>
+          <div class="domain-weight-item">
+            <div class="domain-weight-header">
+              <span class="domain-weight-name">D4: Guidelines for Responsible AI</span>
+              <span class="domain-weight-pct d4">14%</span>
+            </div>
+            <div class="domain-bar-track"><div class="domain-bar-fill d4" data-width="14"></div></div>
+          </div>
+          <div class="domain-weight-item">
+            <div class="domain-weight-header">
+              <span class="domain-weight-name">D5: Security, Compliance &amp; Governance</span>
+              <span class="domain-weight-pct d5">14%</span>
+            </div>
+            <div class="domain-bar-track"><div class="domain-bar-fill d5" data-width="14"></div></div>
+          </div>
+        </div>
+        <div class="hero-card-divider"></div>
+        <div class="exam-quick-facts">
+          <div class="exam-fact">
+            <span class="exam-fact-value">~$150</span>
+            <span class="exam-fact-label">Exam Cost</span>
+          </div>
+          <div class="exam-fact">
+            <span class="exam-fact-value">52%</span>
+            <span class="exam-fact-label">GenAI Weight</span>
+          </div>
+          <div class="exam-fact">
+            <span class="exam-fact-value">3 yrs</span>
+            <span class="exam-fact-label">Valid For</span>
+          </div>
+          <div class="exam-fact">
+            <span class="exam-fact-value">~20h</span>
+            <span class="exam-fact-label">Prep Time</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     PROGRESS DASHBOARD
+════════════════════════════════════════════ -->
+<section id="dashboard">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Your Progress</span>
+      <h2 class="section-title">Study Dashboard</h2>
+      <p class="section-subtitle">Track your completion across all 5 exam domains. Check off topics as you study them.</p>
+    </div>
+
+    <div class="dashboard-grid">
+      <!-- Ring chart -->
+      <div class="progress-ring-card glass-card reveal">
+        <div class="ring-container">
+          <svg width="140" height="140" viewBox="0 0 140 140">
+            <defs>
+              <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FF9900"/>
+                <stop offset="100%" stop-color="#00d4ff"/>
+              </linearGradient>
+            </defs>
+            <circle class="ring-bg" cx="70" cy="70" r="65"/>
+            <circle class="ring-progress" id="overall-ring" cx="70" cy="70" r="65"/>
+          </svg>
+          <div class="ring-center">
+            <span class="ring-pct" id="overall-pct">0%</span>
+            <span class="ring-label">Complete</span>
+          </div>
+        </div>
+        <h3>Overall Study Progress</h3>
+        <button id="reset-progress-btn">🗑 Reset Progress</button>
+      </div>
+
+      <!-- Domain cards -->
+      <div class="domain-cards-grid">
+        <div class="glass-card domain-mini-card d1 reveal reveal-delay-1">
+          <div class="domain-mini-title">Domain 1</div>
+          <div class="domain-mini-weight d1">20%</div>
+          <div class="domain-mini-progress"><div class="domain-mini-progress-fill" id="d1-progress-fill"></div></div>
+          <div class="domain-mini-count" id="d1-count">0 / 0 topics</div>
+        </div>
+        <div class="glass-card domain-mini-card d2 reveal reveal-delay-2">
+          <div class="domain-mini-title">Domain 2</div>
+          <div class="domain-mini-weight d2">24%</div>
+          <div class="domain-mini-progress"><div class="domain-mini-progress-fill" id="d2-progress-fill"></div></div>
+          <div class="domain-mini-count" id="d2-count">0 / 0 topics</div>
+        </div>
+        <div class="glass-card domain-mini-card d3 reveal reveal-delay-3">
+          <div class="domain-mini-title">Domain 3 ⭐</div>
+          <div class="domain-mini-weight d3">28%</div>
+          <div class="domain-mini-progress"><div class="domain-mini-progress-fill" id="d3-progress-fill"></div></div>
+          <div class="domain-mini-count" id="d3-count">0 / 0 topics</div>
+        </div>
+        <div class="glass-card domain-mini-card d4 reveal reveal-delay-1">
+          <div class="domain-mini-title">Domain 4</div>
+          <div class="domain-mini-weight d4">14%</div>
+          <div class="domain-mini-progress"><div class="domain-mini-progress-fill" id="d4-progress-fill"></div></div>
+          <div class="domain-mini-count" id="d4-count">0 / 0 topics</div>
+        </div>
+        <div class="glass-card domain-mini-card d5 reveal reveal-delay-2">
+          <div class="domain-mini-title">Domain 5</div>
+          <div class="domain-mini-weight d5">14%</div>
+          <div class="domain-mini-progress"><div class="domain-mini-progress-fill" id="d5-progress-fill"></div></div>
+          <div class="domain-mini-count" id="d5-count">0 / 0 topics</div>
+        </div>
+        <div class="glass-card reveal reveal-delay-3" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;text-align:center;">
+          <div style="font-size:2rem">🎯</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:0.85rem;color:var(--text-secondary);">Check off topics in each domain to track your progress</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     DOMAIN 1: AI & ML FUNDAMENTALS
+════════════════════════════════════════════ -->
+<section id="domains">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Core Content</span>
+      <h2 class="section-title">The 5 Exam Domains</h2>
+      <p class="section-subtitle">Click each domain to expand detailed study content. Check off topics as you master them.</p>
+    </div>
+
+    <div class="domains-list">
+
+      <!-- DOMAIN 1 -->
+      <div class="domain-section reveal" id="domain-1-section">
+        <div class="domain-header" data-domain="1">
+          <div class="domain-header-left">
+            <div class="domain-icon d1">🧠</div>
+            <div class="domain-meta">
+              <div class="domain-number">Domain 1 of 5</div>
+              <div class="domain-title">Fundamentals of AI and Machine Learning</div>
+              <div class="domain-desc-brief">Core terminology, ML types, lifecycle, key metrics &amp; foundational AWS services</div>
+            </div>
+          </div>
+          <div class="domain-header-right">
+            <span class="domain-weight-badge d1">20%</span>
+            <div class="domain-chevron">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="domain-body">
+          <div class="domain-body-inner">
+
+            <div class="warn-box">
+              <span class="warn-icon">💡</span>
+              <div><strong style="color:var(--aws-orange)">My Advice:</strong> Domain 1 is your foundation. Don't skip it even though it's only 20% — concepts like supervised/unsupervised learning and the ML lifecycle underpin all other domains. Spend ~3-4 hours here solidly before moving on.</div>
+            </div>
+
+            <div class="domain-subsection">
+              <div class="domain-subsection-title">📚 Topics to Study</div>
+              <div class="topics-grid" id="d1-topics">
+                <div class="topic-item" data-domain="1" data-id="d1-t1"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">AI vs ML vs Deep Learning vs GenAI — key differences</span></div>
+                <div class="topic-item" data-domain="1" data-id="d1-t2"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Supervised Learning (classification, regression)</span></div>
+                <div class="topic-item" data-domain="1" data-id="d1-t3"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Unsupervised Learning (clustering, dimensionality reduction)</span></div>
+                <div class="topic-item" data-domain="1" data-id="d1-t4"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Reinforcement Learning concepts</span></div>
+                <div class="topic-item" data-domain="1" data-id="d1-t5"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">ML Lifecycle: Data → Prepare → Train → Evaluate → Deploy → Monitor</span></div>
+                <div class="topic-item" data-domain="1" data-id="d1-t6"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Neural networks basics (layers, activation functions)</span></div>
+                <div class="topic-item" data-domain="1" data-id="d1-t7"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Overfitting vs Underfitting; Bias-Variance tradeoff</span></div>
+                <div class="topic-item" data-domain="1" data-id="d1-t8"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Evaluation metrics: Accuracy, Precision, Recall, F1, AUC-ROC</span></div>
+                <div class="topic-item" data-domain="1" data-id="d1-t9"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Feature engineering &amp; data preprocessing</span></div>
+                <div class="topic-item" data-domain="1" data-id="d1-t10"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Training vs Validation vs Test splits</span></div>
+                <div class="topic-item" data-domain="1" data-id="d1-t11"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Hyperparameter tuning concepts</span></div>
+                <div class="topic-item" data-domain="1" data-id="d1-t12"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Amazon SageMaker overview &amp; Studio</span></div>
+                <div class="topic-item" data-domain="1" data-id="d1-t13"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">SageMaker Canvas (no-code ML)</span></div>
+                <div class="topic-item" data-domain="1" data-id="d1-t14"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">SageMaker Ground Truth (data labeling)</span></div>
+              </div>
+            </div>
+
+            <div class="domain-subsection">
+              <div class="domain-subsection-title">🔑 Key Concepts</div>
+              <div class="concepts-grid">
+                <div class="concept-card"><div class="concept-name">Supervised Learning</div><div class="concept-def">Model trained on labeled data. Learns mapping from inputs → outputs. Includes classification (discrete) and regression (continuous).</div></div>
+                <div class="concept-card"><div class="concept-name">Unsupervised Learning</div><div class="concept-def">Finds patterns in unlabeled data. Key techniques: K-Means clustering, PCA for dimensionality reduction, anomaly detection.</div></div>
+                <div class="concept-card"><div class="concept-name">Reinforcement Learning</div><div class="concept-def">Agent learns by interacting with an environment, receiving rewards/penalties. Used in game-playing AI, robotics, optimization.</div></div>
+                <div class="concept-card"><div class="concept-name">Overfitting</div><div class="concept-def">Model memorizes training data but fails on new data. Fix: more data, regularization (L1/L2), dropout, simpler model.</div></div>
+                <div class="concept-card"><div class="concept-name">Precision vs Recall</div><div class="concept-def">Precision = TP/(TP+FP) — of all predicted positives, how many are real. Recall = TP/(TP+FN) — of all actual positives, how many did we catch. F1 balances both.</div></div>
+                <div class="concept-card"><div class="concept-name">Confusion Matrix</div><div class="concept-def">Table showing TP, TN, FP, FN for classification models. Basis for Precision, Recall, F1, Accuracy calculations.</div></div>
+              </div>
+            </div>
+
+            <div class="domain-subsection">
+              <div class="domain-subsection-title">⚡ AI vs ML vs DL — Quick Comparison</div>
+              <div style="overflow-x:auto;">
+                <table class="compare-table">
+                  <thead><tr><th>Term</th><th>Definition</th><th>Example</th></tr></thead>
+                  <tbody>
+                    <tr><td>AI</td><td>Broad field of machines simulating human intelligence</td><td>Chess engines, recommendation systems</td></tr>
+                    <tr><td>ML</td><td>Subset of AI — systems that learn from data without explicit programming</td><td>Spam filters, fraud detection</td></tr>
+                    <tr><td>Deep Learning</td><td>Subset of ML using multi-layer neural networks</td><td>Image recognition, speech-to-text</td></tr>
+                    <tr><td>Generative AI</td><td>Subset of DL that generates new content (text, images, code)</td><td>ChatGPT, DALL·E, Amazon Titan</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="domain-subsection">
+              <div class="domain-subsection-title">🛠️ AWS Services for this Domain</div>
+              <div class="services-row">
+                <span class="service-pill">⚡ Amazon SageMaker</span>
+                <span class="service-pill">🎨 SageMaker Canvas</span>
+                <span class="service-pill">🏷️ SageMaker Ground Truth</span>
+                <span class="service-pill">🚀 SageMaker JumpStart</span>
+                <span class="service-pill">📊 SageMaker Experiments</span>
+                <span class="service-pill">📦 SageMaker Model Registry</span>
+              </div>
+            </div>
+
+            <div class="domain-flashcard-preview" data-domain-filter="1">
+              <div class="domain-flashcard-preview-text">📖 Ready to test yourself? <strong>8 flashcards</strong> available for Domain 1</div>
+              <button class="btn-flashcard-open">Practice Now →</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- DOMAIN 2 -->
+      <div class="domain-section reveal" id="domain-2-section">
+        <div class="domain-header" data-domain="2">
+          <div class="domain-header-left">
+            <div class="domain-icon d2">✨</div>
+            <div class="domain-meta">
+              <div class="domain-number">Domain 2 of 5</div>
+              <div class="domain-title">Fundamentals of Generative AI</div>
+              <div class="domain-desc-brief">Foundation models, LLMs, transformers, tokenization, prompt engineering basics &amp; Amazon Bedrock</div>
+            </div>
+          </div>
+          <div class="domain-header-right">
+            <span class="domain-weight-badge d2">24%</span>
+            <div class="domain-chevron">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="domain-body">
+          <div class="domain-body-inner">
+
+            <div class="warn-box">
+              <span class="warn-icon">⭐</span>
+              <div><strong style="color:#a78bfa">My Advice:</strong> This domain + Domain 3 = 52% of your exam. Master these two thoroughly. Focus especially on how transformers work conceptually, what tokens/embeddings are, and know the difference between Fine-tuning, RAG, and Prompt Engineering — this is a guaranteed exam topic.</div>
+            </div>
+
+            <div class="domain-subsection">
+              <div class="domain-subsection-title">📚 Topics to Study</div>
+              <div class="topics-grid" id="d2-topics">
+                <div class="topic-item" data-domain="2" data-id="d2-t1"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">What are Foundation Models (FMs) &amp; their characteristics</span></div>
+                <div class="topic-item" data-domain="2" data-id="d2-t2"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Large Language Models (LLMs) — architecture overview</span></div>
+                <div class="topic-item" data-domain="2" data-id="d2-t3"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Transformer architecture &amp; attention mechanism (conceptual)</span></div>
+                <div class="topic-item" data-domain="2" data-id="d2-t4"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Tokens, tokenization &amp; context window</span></div>
+                <div class="topic-item" data-domain="2" data-id="d2-t5"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Embeddings &amp; vector representations</span></div>
+                <div class="topic-item" data-domain="2" data-id="d2-t6"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Training phases: Pre-training → Fine-tuning → RLHF</span></div>
+                <div class="topic-item" data-domain="2" data-id="d2-t7"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Inference parameters: Temperature, Top-K, Top-P</span></div>
+                <div class="topic-item" data-domain="2" data-id="d2-t8"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Generative AI use cases (text, images, code, audio)</span></div>
+                <div class="topic-item" data-domain="2" data-id="d2-t9"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Diffusion models (image generation basics)</span></div>
+                <div class="topic-item" data-domain="2" data-id="d2-t10"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Amazon Bedrock service overview</span></div>
+                <div class="topic-item" data-domain="2" data-id="d2-t11"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Amazon Titan models (Titan Text, Titan Embeddings, Titan Image)</span></div>
+                <div class="topic-item" data-domain="2" data-id="d2-t12"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Model selection criteria (cost, latency, capability, context size)</span></div>
+                <div class="topic-item" data-domain="2" data-id="d2-t13"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Hallucinations &amp; model limitations</span></div>
+              </div>
+            </div>
+
+            <div class="domain-subsection">
+              <div class="domain-subsection-title">🔑 Key Concepts</div>
+              <div class="concepts-grid">
+                <div class="concept-card"><div class="concept-name">Foundation Model</div><div class="concept-def">A large model trained on massive datasets that can be adapted (via fine-tuning or prompting) for many tasks. Examples: Claude, Titan, Llama, Stable Diffusion.</div></div>
+                <div class="concept-card"><div class="concept-name">Token</div><div class="concept-def">The basic unit of text for LLMs. Roughly 1 token ≈ 0.75 words. LLMs have a context window limit measured in tokens (e.g., 100K tokens).</div></div>
+                <div class="concept-card"><div class="concept-name">Embedding</div><div class="concept-def">A numerical vector representing text, image, or audio in a high-dimensional space. Similar meanings → similar vectors. Used in RAG and semantic search.</div></div>
+                <div class="concept-card"><div class="concept-name">Temperature</div><div class="concept-def">Controls output randomness. High temperature (>1) = more creative/random. Low temperature (&lt;0.3) = more deterministic/focused. 0 = greedy decoding.</div></div>
+                <div class="concept-card"><div class="concept-name">RLHF</div><div class="concept-def">Reinforcement Learning from Human Feedback — technique used to align LLM outputs with human preferences. Humans rate responses, model learns from ratings.</div></div>
+                <div class="concept-card"><div class="concept-name">Context Window</div><div class="concept-def">Maximum amount of text (tokens) an LLM can process at once. Larger context = more expensive but handles longer documents. Key for RAG applications.</div></div>
+              </div>
+            </div>
+
+            <div class="domain-subsection">
+              <div class="domain-subsection-title">⚡ Inference Parameters Cheat Sheet</div>
+              <div style="overflow-x:auto;">
+                <table class="compare-table">
+                  <thead><tr><th>Parameter</th><th>What it does</th><th>When to use</th></tr></thead>
+                  <tbody>
+                    <tr><td>Temperature</td><td>Controls randomness of output</td><td>Low for factual; High for creative</td></tr>
+                    <tr><td>Top-K</td><td>Limits to top K most probable next tokens</td><td>Reduces wild outputs</td></tr>
+                    <tr><td>Top-P (Nucleus)</td><td>Samples from tokens whose cumulative prob ≥ P</td><td>Flexible randomness control</td></tr>
+                    <tr><td>Max Tokens</td><td>Maximum length of generated response</td><td>Cost/latency control</td></tr>
+                    <tr><td>Stop Sequences</td><td>String(s) that stop generation when encountered</td><td>Structured output control</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="domain-subsection">
+              <div class="domain-subsection-title">🛠️ AWS Services for this Domain</div>
+              <div class="services-row">
+                <span class="service-pill">🌟 Amazon Bedrock</span>
+                <span class="service-pill">🏔️ Amazon Titan Text</span>
+                <span class="service-pill">🎨 Amazon Titan Image Generator</span>
+                <span class="service-pill">📐 Amazon Titan Embeddings</span>
+                <span class="service-pill">🎮 PartyRock</span>
+              </div>
+            </div>
+
+            <div class="domain-flashcard-preview" data-domain-filter="2">
+              <div class="domain-flashcard-preview-text">📖 Ready to test yourself? <strong>10 flashcards</strong> available for Domain 2</div>
+              <button class="btn-flashcard-open">Practice Now →</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- DOMAIN 3 -->
+      <div class="domain-section reveal" id="domain-3-section">
+        <div class="domain-header" data-domain="3">
+          <div class="domain-header-left">
+            <div class="domain-icon d3">🚀</div>
+            <div class="domain-meta">
+              <div class="domain-number">Domain 3 of 5 · ⭐ Highest Weight</div>
+              <div class="domain-title">Applications of Foundation Models</div>
+              <div class="domain-desc-brief">RAG, prompt engineering, Amazon Bedrock deep dive, fine-tuning, Agents, Amazon Q &amp; real-world use cases</div>
+            </div>
+          </div>
+          <div class="domain-header-right">
+            <span class="domain-weight-badge d3">28%</span>
+            <div class="domain-chevron">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="domain-body">
+          <div class="domain-body-inner">
+
+            <div class="warn-box">
+              <span class="warn-icon">🔥</span>
+              <div><strong style="color:var(--aws-orange)">My Advice:</strong> This is THE most important domain at 28%. Spend at least 6-8 hours here. RAG vs Fine-tuning vs Prompting will almost certainly be on your exam — know when to use each. Amazon Bedrock features (Guardrails, Knowledge Bases, Agents) are exam favorites. Learn them cold.</div>
+            </div>
+
+            <div class="domain-subsection">
+              <div class="domain-subsection-title">📚 Topics to Study</div>
+              <div class="topics-grid" id="d3-topics">
+                <div class="topic-item" data-domain="3" data-id="d3-t1"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Prompt engineering: Zero-shot, Few-shot, Chain-of-Thought</span></div>
+                <div class="topic-item" data-domain="3" data-id="d3-t2"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">RAG (Retrieval-Augmented Generation) architecture</span></div>
+                <div class="topic-item" data-domain="3" data-id="d3-t3"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Vector databases &amp; semantic search (OpenSearch, pgvector)</span></div>
+                <div class="topic-item" data-domain="3" data-id="d3-t4"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Fine-tuning vs RAG vs Prompt Engineering — when to use each</span></div>
+                <div class="topic-item" data-domain="3" data-id="d3-t5"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Amazon Bedrock: Model access, pricing, API</span></div>
+                <div class="topic-item" data-domain="3" data-id="d3-t6"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Amazon Bedrock Knowledge Bases</span></div>
+                <div class="topic-item" data-domain="3" data-id="d3-t7"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Amazon Bedrock Agents (agentic workflows)</span></div>
+                <div class="topic-item" data-domain="3" data-id="d3-t8"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Amazon Bedrock Guardrails (content filtering, PII)</span></div>
+                <div class="topic-item" data-domain="3" data-id="d3-t9"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Amazon Q Business &amp; Amazon Q Developer</span></div>
+                <div class="topic-item" data-domain="3" data-id="d3-t10"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Use cases: chatbots, summarization, code gen, content creation</span></div>
+                <div class="topic-item" data-domain="3" data-id="d3-t11"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Model evaluation metrics for GenAI (ROUGE, BLEU, BERTScore)</span></div>
+                <div class="topic-item" data-domain="3" data-id="d3-t12"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">PartyRock (no-code GenAI app builder)</span></div>
+                <div class="topic-item" data-domain="3" data-id="d3-t13"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Continued pre-training vs fine-tuning</span></div>
+                <div class="topic-item" data-domain="3" data-id="d3-t14"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Models available on Bedrock: Anthropic Claude, Meta Llama, Mistral, Stability AI</span></div>
+              </div>
+            </div>
+
+            <div class="domain-subsection">
+              <div class="domain-subsection-title">🔑 The Big Three: RAG vs Fine-Tuning vs Prompting</div>
+              <div style="overflow-x:auto;">
+                <table class="compare-table">
+                  <thead><tr><th>Approach</th><th>Best for</th><th>Cost</th><th>When to choose</th></tr></thead>
+                  <tbody>
+                    <tr><td>Prompt Engineering</td><td>Quick tasks, existing model knowledge</td><td>💲 Lowest</td><td>Task fits within context window; no custom data needed</td></tr>
+                    <tr><td>RAG</td><td>Grounding answers in your private data</td><td>💲💲 Medium</td><td>Needs up-to-date knowledge; documents change frequently</td></tr>
+                    <tr><td>Fine-Tuning</td><td>Domain-specific style/format/behavior</td><td>💲💲💲 Highest</td><td>Need specific tone, format, or task repeatedly at scale</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="domain-subsection">
+              <div class="domain-subsection-title">🔑 Key Concepts</div>
+              <div class="concepts-grid">
+                <div class="concept-card"><div class="concept-name">RAG</div><div class="concept-def">Retrieval-Augmented Generation: retrieve relevant documents from a knowledge base, inject them into the prompt context, then generate grounded answers. Reduces hallucinations.</div></div>
+                <div class="concept-card"><div class="concept-name">Bedrock Knowledge Base</div><div class="concept-def">Managed RAG service on AWS. Connect your S3 documents, it auto-creates embeddings in a vector store, and provides a query API. No infrastructure to manage.</div></div>
+                <div class="concept-card"><div class="concept-name">Bedrock Agents</div><div class="concept-def">Autonomous agents that can plan multi-step workflows, call APIs/Lambda functions, and use Knowledge Bases. Think: AI that takes actions, not just responds.</div></div>
+                <div class="concept-card"><div class="concept-name">Bedrock Guardrails</div><div class="concept-def">Safety layer for Bedrock apps: filter harmful content, block topics, redact PII, detect grounding, and apply watermarks. Applied to both inputs and outputs.</div></div>
+                <div class="concept-card"><div class="concept-name">Zero-shot Prompting</div><div class="concept-def">Give the model a task with no examples — rely on its pre-trained knowledge. Best when task is simple/straightforward.</div></div>
+                <div class="concept-card"><div class="concept-name">Few-shot Prompting</div><div class="concept-def">Provide 2-5 examples of input→output pairs in the prompt. Guides model behavior for specific formats or patterns.</div></div>
+                <div class="concept-card"><div class="concept-name">Chain-of-Thought</div><div class="concept-def">Ask the model to "think step by step" before answering. Dramatically improves accuracy on reasoning and math tasks.</div></div>
+                <div class="concept-card"><div class="concept-name">Amazon Q Business</div><div class="concept-def">Managed GenAI assistant for enterprises — connects to 40+ data sources (SharePoint, Salesforce, S3) with permission-aware answers. No model expertise needed.</div></div>
+              </div>
+            </div>
+
+            <div class="domain-subsection">
+              <div class="domain-subsection-title">🛠️ AWS Services for this Domain</div>
+              <div class="services-row">
+                <span class="service-pill">🌟 Amazon Bedrock</span>
+                <span class="service-pill">🗄️ Bedrock Knowledge Bases</span>
+                <span class="service-pill">🤖 Bedrock Agents</span>
+                <span class="service-pill">🛡️ Bedrock Guardrails</span>
+                <span class="service-pill">❓ Amazon Q Business</span>
+                <span class="service-pill">👨‍💻 Amazon Q Developer</span>
+                <span class="service-pill">🎮 PartyRock</span>
+                <span class="service-pill">🔍 OpenSearch (vector store)</span>
+                <span class="service-pill">🗃️ Aurora pgvector</span>
+              </div>
+            </div>
+
+            <div class="domain-flashcard-preview" data-domain-filter="3">
+              <div class="domain-flashcard-preview-text">📖 Ready to test yourself? <strong>12 flashcards</strong> available for Domain 3</div>
+              <button class="btn-flashcard-open">Practice Now →</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- DOMAIN 4 -->
+      <div class="domain-section reveal" id="domain-4-section">
+        <div class="domain-header" data-domain="4">
+          <div class="domain-header-left">
+            <div class="domain-icon d4">⚖️</div>
+            <div class="domain-meta">
+              <div class="domain-number">Domain 4 of 5</div>
+              <div class="domain-title">Guidelines for Responsible AI</div>
+              <div class="domain-desc-brief">Fairness, bias, explainability, transparency, human-in-the-loop &amp; AWS responsible AI tools</div>
+            </div>
+          </div>
+          <div class="domain-header-right">
+            <span class="domain-weight-badge d4">14%</span>
+            <div class="domain-chevron">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="domain-body">
+          <div class="domain-body-inner">
+
+            <div class="info-box">
+              <span class="info-icon">💡</span>
+              <div><strong style="color:#34d399">My Advice:</strong> 14% but very conceptual — the questions are often scenario-based. Know the 6 pillars of responsible AI (Fairness, Explainability, Privacy, Robustness, Governance, Transparency) and map AWS tools to each. SageMaker Clarify and Bedrock Guardrails are the key services here.</div>
+            </div>
+
+            <div class="domain-subsection">
+              <div class="domain-subsection-title">📚 Topics to Study</div>
+              <div class="topics-grid" id="d4-topics">
+                <div class="topic-item" data-domain="4" data-id="d4-t1"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">6 Pillars of Responsible AI: Fairness, Explainability, Privacy, Robustness, Governance, Transparency</span></div>
+                <div class="topic-item" data-domain="4" data-id="d4-t2"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Types of AI bias: data bias, algorithmic bias, sampling bias</span></div>
+                <div class="topic-item" data-domain="4" data-id="d4-t3"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Bias detection &amp; mitigation strategies</span></div>
+                <div class="topic-item" data-domain="4" data-id="d4-t4"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Explainability techniques (SHAP, feature importance, LIME)</span></div>
+                <div class="topic-item" data-domain="4" data-id="d4-t5"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Human-in-the-loop (HITL) systems</span></div>
+                <div class="topic-item" data-domain="4" data-id="d4-t6"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Hallucination detection &amp; grounding</span></div>
+                <div class="topic-item" data-domain="4" data-id="d4-t7"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Toxicity, hate speech &amp; content moderation in AI</span></div>
+                <div class="topic-item" data-domain="4" data-id="d4-t8"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">AWS Responsible AI principles &amp; AWS AI Service Cards</span></div>
+                <div class="topic-item" data-domain="4" data-id="d4-t9"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">SageMaker Clarify (bias detection &amp; explainability)</span></div>
+                <div class="topic-item" data-domain="4" data-id="d4-t10"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Bedrock Guardrails for responsible GenAI</span></div>
+              </div>
+            </div>
+
+            <div class="domain-subsection">
+              <div class="domain-subsection-title">🔑 Key Concepts</div>
+              <div class="concepts-grid">
+                <div class="concept-card"><div class="concept-name">Data Bias</div><div class="concept-def">Training data that over- or under-represents certain groups leads to unfair model predictions. Example: facial recognition trained mostly on light-skinned faces.</div></div>
+                <div class="concept-card"><div class="concept-name">SHAP Values</div><div class="concept-def">SHapley Additive exPlanations — a method to explain how much each feature contributed to a specific prediction. Used by SageMaker Clarify.</div></div>
+                <div class="concept-card"><div class="concept-name">Human-in-the-Loop</div><div class="concept-def">Keeping humans involved in AI decision-making for high-stakes scenarios. AWS A2I (Augmented AI) implements HITL workflows for reviewing model predictions.</div></div>
+                <div class="concept-card"><div class="concept-name">Hallucination</div><div class="concept-def">When an LLM confidently generates factually incorrect information. Mitigation: RAG (grounding in real documents), Bedrock Guardrails grounding check.</div></div>
+                <div class="concept-card"><div class="concept-name">AI Service Cards</div><div class="concept-def">AWS documentation that details intended use cases, limitations, and responsible AI considerations for each AWS AI service. Important for transparency.</div></div>
+                <div class="concept-card"><div class="concept-name">SageMaker Clarify</div><div class="concept-def">AWS tool that detects bias in datasets and models at training time, and provides feature importance (explainability) reports using SHAP.</div></div>
+              </div>
+            </div>
+
+            <div class="domain-subsection">
+              <div class="domain-subsection-title">🛠️ AWS Services for this Domain</div>
+              <div class="services-row">
+                <span class="service-pill">🔎 SageMaker Clarify</span>
+                <span class="service-pill">🛡️ Bedrock Guardrails</span>
+                <span class="service-pill">👁️ Amazon A2I (Augmented AI)</span>
+                <span class="service-pill">📋 AWS AI Service Cards</span>
+                <span class="service-pill">👮 Amazon Rekognition (content mod.)</span>
+              </div>
+            </div>
+
+            <div class="domain-flashcard-preview" data-domain-filter="4">
+              <div class="domain-flashcard-preview-text">📖 Ready to test yourself? <strong>8 flashcards</strong> available for Domain 4</div>
+              <button class="btn-flashcard-open">Practice Now →</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- DOMAIN 5 -->
+      <div class="domain-section reveal" id="domain-5-section">
+        <div class="domain-header" data-domain="5">
+          <div class="domain-header-left">
+            <div class="domain-icon d5">🔐</div>
+            <div class="domain-meta">
+              <div class="domain-number">Domain 5 of 5</div>
+              <div class="domain-title">Security, Compliance &amp; Governance for AI Solutions</div>
+              <div class="domain-desc-brief">IAM, encryption, VPC, compliance frameworks, auditability &amp; cost governance for ML workloads</div>
+            </div>
+          </div>
+          <div class="domain-header-right">
+            <span class="domain-weight-badge d5">14%</span>
+            <div class="domain-chevron">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="domain-body">
+          <div class="domain-body-inner">
+
+            <div class="info-box">
+              <span class="info-icon">💡</span>
+              <div><strong style="color:#f87171">My Advice:</strong> If you already have a general AWS background, this domain may feel familiar. Focus on the AI-specific aspects: IAM least privilege for Bedrock/SageMaker, how model artifacts are protected in S3, and compliance responsibilities (HIPAA, GDPR). CloudTrail for AI auditing is commonly tested.</div>
+            </div>
+
+            <div class="domain-subsection">
+              <div class="domain-subsection-title">📚 Topics to Study</div>
+              <div class="topics-grid" id="d5-topics">
+                <div class="topic-item" data-domain="5" data-id="d5-t1"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">IAM roles &amp; least privilege for AI services (Bedrock, SageMaker)</span></div>
+                <div class="topic-item" data-domain="5" data-id="d5-t2"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Data encryption at rest (S3 SSE, KMS) &amp; in transit (TLS)</span></div>
+                <div class="topic-item" data-domain="5" data-id="d5-t3"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">VPC configurations for SageMaker training &amp; inference</span></div>
+                <div class="topic-item" data-domain="5" data-id="d5-t4"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">AWS CloudTrail for auditing AI API calls</span></div>
+                <div class="topic-item" data-domain="5" data-id="d5-t5"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Compliance frameworks: HIPAA, GDPR, SOC 2, PCI DSS</span></div>
+                <div class="topic-item" data-domain="5" data-id="d5-t6"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Model versioning &amp; lineage tracking (SageMaker Model Registry)</span></div>
+                <div class="topic-item" data-domain="5" data-id="d5-t7"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">PII detection &amp; data anonymization for ML</span></div>
+                <div class="topic-item" data-domain="5" data-id="d5-t8"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">AWS Config for governance &amp; compliance monitoring</span></div>
+                <div class="topic-item" data-domain="5" data-id="d5-t9"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Cost monitoring for AI workloads (AWS Cost Explorer, Budgets)</span></div>
+                <div class="topic-item" data-domain="5" data-id="d5-t10"><div class="topic-checkbox"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="topic-name">Bedrock data privacy: no data used for model training by default</span></div>
+              </div>
+            </div>
+
+            <div class="domain-subsection">
+              <div class="domain-subsection-title">🔑 Key Concepts</div>
+              <div class="concepts-grid">
+                <div class="concept-card"><div class="concept-name">Shared Responsibility</div><div class="concept-def">AWS secures the infrastructure; YOU secure your data, IAM policies, encryption choices, and application configuration. Applies to all AI services.</div></div>
+                <div class="concept-card"><div class="concept-name">Bedrock Privacy</div><div class="concept-def">AWS guarantees that prompts and responses sent to Bedrock are NOT used to train foundation models. Your data stays yours.</div></div>
+                <div class="concept-card"><div class="concept-name">CloudTrail for AI</div><div class="concept-def">Records all API calls to Bedrock, SageMaker, and other AI services. Use it for security audits, compliance, and investigating unauthorized access.</div></div>
+                <div class="concept-card"><div class="concept-name">SageMaker Lineage</div><div class="concept-def">Tracks the entire lifecycle of a model: data sources → processing → training → evaluation → deployment. Critical for reproducibility and compliance.</div></div>
+                <div class="concept-card"><div class="concept-name">HIPAA &amp; AI</div><div class="concept-def">Healthcare AI workloads must protect PHI (Protected Health Information). Use HIPAA-eligible AWS services, BAA agreements, and encryption everywhere.</div></div>
+                <div class="concept-card"><div class="concept-name">Amazon Macie</div><div class="concept-def">Automatically discovers and protects sensitive data (PII, PHI, financial data) in S3 using ML. Useful before training ML models on customer data.</div></div>
+              </div>
+            </div>
+
+            <div class="domain-subsection">
+              <div class="domain-subsection-title">🛠️ AWS Services for this Domain</div>
+              <div class="services-row">
+                <span class="service-pill">🔐 AWS IAM</span>
+                <span class="service-pill">🔑 AWS KMS</span>
+                <span class="service-pill">📜 AWS CloudTrail</span>
+                <span class="service-pill">⚙️ AWS Config</span>
+                <span class="service-pill">🔍 Amazon Macie</span>
+                <span class="service-pill">🧬 SageMaker Model Registry</span>
+                <span class="service-pill">💰 AWS Cost Explorer</span>
+                <span class="service-pill">🌐 AWS VPC</span>
+              </div>
+            </div>
+
+            <div class="domain-flashcard-preview" data-domain-filter="5">
+              <div class="domain-flashcard-preview-text">📖 Ready to test yourself? <strong>8 flashcards</strong> available for Domain 5</div>
+              <button class="btn-flashcard-open">Practice Now →</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /domains-list -->
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     AWS SERVICES REFERENCE
+════════════════════════════════════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Quick Reference</span>
+      <h2 class="section-title">AWS AI &amp; ML Services</h2>
+      <p class="section-subtitle">Every key AWS AI service you need to know. Filter by category or search by name.</p>
+    </div>
+
+    <div style="text-align:center;">
+      <input type="text" class="services-search" id="services-search" placeholder="🔍  Search services..." />
+    </div>
+
+    <div class="services-filter-bar">
+      <button class="filter-btn active" data-filter="all">All Services</button>
+      <button class="filter-btn" data-filter="ml">🧠 ML Platform</button>
+      <button class="filter-btn" data-filter="genai">✨ Generative AI</button>
+      <button class="filter-btn" data-filter="vision">👁️ Vision</button>
+      <button class="filter-btn" data-filter="nlp">💬 Language &amp; NLP</button>
+      <button class="filter-btn" data-filter="governance">🔐 Governance</button>
+    </div>
+
+    <div class="services-grid" id="services-grid">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     STUDY PLANNER
+════════════════════════════════════════════ -->
+<section id="planner">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Study Strategy</span>
+      <h2 class="section-title">Recommended Study Plan</h2>
+      <p class="section-subtitle">A prioritized, time-boxed study sequence based on exam domain weights.</p>
+    </div>
+
+    <div class="planner-grid">
+      <div class="glass-card reveal">
+        <div class="study-plan-steps">
+          <div class="study-step">
+            <div class="step-num priority-high">1</div>
+            <div class="step-content">
+              <div class="step-title">Build your AI/ML foundation (Domain 1)</div>
+              <div class="step-detail">Start here even though it's only 20%. Understanding supervised/unsupervised learning, evaluation metrics, and the ML lifecycle will make Domains 2 &amp; 3 click much faster.</div>
+              <span class="step-time">⏱ ~3-4 hours</span>
+            </div>
+          </div>
+          <div class="study-step">
+            <div class="step-num priority-high">2</div>
+            <div class="step-content">
+              <div class="step-title">Master Generative AI concepts (Domain 2)</div>
+              <div class="step-detail">Deeply understand foundation models, tokens, embeddings, and inference parameters. Get hands-on with Amazon Bedrock — try it directly in the console with the Bedrock Playground.</div>
+              <span class="step-time">⏱ ~4-5 hours</span>
+            </div>
+          </div>
+          <div class="study-step">
+            <div class="step-num priority-high">3</div>
+            <div class="step-content">
+              <div class="step-title">📌 Deep dive: Applications of FMs (Domain 3 — Priority #1)</div>
+              <div class="step-detail">Spend the most time here. Master RAG vs Fine-tuning vs Prompting. Build a sample app with Bedrock Knowledge Bases. Understand Agents, Guardrails, and Amazon Q thoroughly.</div>
+              <span class="step-time">⏱ ~6-8 hours</span>
+            </div>
+          </div>
+          <div class="study-step">
+            <div class="step-num priority-medium">4</div>
+            <div class="step-content">
+              <div class="step-title">Responsible AI principles (Domain 4)</div>
+              <div class="step-detail">Focus on scenario-based understanding. Know your bias types, explainability tools, and how Bedrock Guardrails + SageMaker Clarify address responsible AI.</div>
+              <span class="step-time">⏱ ~2-3 hours</span>
+            </div>
+          </div>
+          <div class="study-step">
+            <div class="step-num priority-medium">5</div>
+            <div class="step-content">
+              <div class="step-title">Security &amp; governance (Domain 5)</div>
+              <div class="step-detail">Focus on IAM least privilege, CloudTrail auditing, encryption strategies, and compliance. If you have an AWS background this will be faster — focus on AI-specific angles.</div>
+              <span class="step-time">⏱ ~2-3 hours</span>
+            </div>
+          </div>
+          <div class="study-step">
+            <div class="step-num priority-low">6</div>
+            <div class="step-content">
+              <div class="step-title">Review, flashcards &amp; practice questions</div>
+              <div class="step-detail">Review weak areas, practice with official AWS sample questions, and use the flashcard system here. Aim for 70%+ on practice tests before booking your exam.</div>
+              <span class="step-time">⏱ ~3-4 hours</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tips card -->
+      <div class="tips-card reveal reveal-delay-2">
+        <h3>💡 Exam Day Tips</h3>
+        <ul class="tips-list">
+          <li class="tip-item"><span class="tip-icon">🎯</span><span>Focus on Domains 2 &amp; 3 first — they're 52% of your score</span></li>
+          <li class="tip-item"><span class="tip-icon">🔖</span><span>Use "mark for review" on hard questions; come back at the end</span></li>
+          <li class="tip-item"><span class="tip-icon">⏰</span><span>90 minutes for 65 questions = ~83 seconds/question. Keep pace.</span></li>
+          <li class="tip-item"><span class="tip-icon">🚫</span><span>Eliminate wrong answers first — usually 2 are obviously off</span></li>
+          <li class="tip-item"><span class="tip-icon">☁️</span><span>When in doubt, the AWS-native service is usually the right answer</span></li>
+          <li class="tip-item"><span class="tip-icon">🤖</span><span>Amazon Bedrock = managed GenAI; SageMaker = custom ML. Know the difference.</span></li>
+          <li class="tip-item"><span class="tip-icon">📖</span><span>Read the AWS Bedrock and SageMaker FAQs — great exam content</span></li>
+          <li class="tip-item"><span class="tip-icon">🧪</span><span>Take the official AWS practice exam before your real attempt</span></li>
+          <li class="tip-item"><span class="tip-icon">🌐</span><span>Free hands-on: AWS Free Tier + Bedrock Playground + PartyRock</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer id="footer">
+  <div class="footer-inner">
+    <p class="footer-text">AWS AI Practitioner Study Hub · Built for AIF-C01 exam preparation · Not affiliated with Amazon Web Services</p>
+    <div class="footer-links">
+      <a href="https://aws.amazon.com/certification/certified-ai-practitioner/" target="_blank" rel="noopener">Official Exam Page</a>
+      <a href="https://explore.skillbuilder.aws/" target="_blank" rel="noopener">AWS Skill Builder</a>
+      <a href="https://partyrock.aws/" target="_blank" rel="noopener">PartyRock</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════
+     FLASHCARD MODAL
+════════════════════════════════════════════ -->
+<div id="flashcard-modal">
+  <div class="modal-backdrop" id="modal-backdrop"></div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="modal-title">🃏 Flashcards</span>
+      <button class="modal-close" id="close-modal-btn">✕</button>
+    </div>
+
+    <div class="fc-domain-filter">
+      <button class="fc-filter-btn active" data-fc-domain="all">All Domains</button>
+      <button class="fc-filter-btn" data-fc-domain="1">D1</button>
+      <button class="fc-filter-btn" data-fc-domain="2">D2</button>
+      <button class="fc-filter-btn" data-fc-domain="3">D3</button>
+      <button class="fc-filter-btn" data-fc-domain="4">D4</button>
+      <button class="fc-filter-btn" data-fc-domain="5">D5</button>
+    </div>
+
+    <div class="flashcard-scene" id="flashcard-scene">
+      <div class="flashcard" id="flashcard">
+        <div class="flashcard-face flashcard-front">
+          <div class="fc-label">❓ Question</div>
+          <div class="fc-question" id="fc-question">Loading...</div>
+          <div class="fc-tap-hint">Tap card to reveal answer</div>
+        </div>
+        <div class="flashcard-face flashcard-back">
+          <div class="fc-label">✅ Answer</div>
+          <div class="fc-answer" id="fc-answer">...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fc-controls">
+      <div class="fc-nav">
+        <button class="fc-btn" id="fc-prev-btn">←</button>
+        <button class="fc-btn" id="fc-next-btn">→</button>
+      </div>
+      <span class="fc-counter" id="fc-counter">1 / 46</span>
+    </div>
+
+    <div class="fc-actions">
+      <button class="fc-action-btn know" id="fc-know-btn">✓ Got it</button>
+      <button class="fc-action-btn review" id="fc-review-btn">↺ Review again</button>
+      <button class="fc-action-btn shuffle" id="fc-shuffle-btn">🔀 Shuffle</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

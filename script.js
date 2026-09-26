@@ -232,11 +232,26 @@ function initTopics() {
     const id = item.dataset.id;
     if (completedTopics[id]) item.classList.add('completed');
 
-    item.addEventListener('click', () => {
-      completedTopics[id] = !completedTopics[id];
-      item.classList.toggle('completed', completedTopics[id]);
-      updateProgress();
-    });
+    const header = item.querySelector('.topic-header');
+    if (header) {
+      // Accordion mode
+      header.addEventListener('click', (e) => {
+        if (e.target.closest('.topic-checkbox')) {
+          completedTopics[id] = !completedTopics[id];
+          item.classList.toggle('completed', completedTopics[id]);
+          updateProgress();
+        } else {
+          item.classList.toggle('expanded');
+        }
+      });
+    } else {
+      // Standard mode
+      item.addEventListener('click', () => {
+        completedTopics[id] = !completedTopics[id];
+        item.classList.toggle('completed', completedTopics[id]);
+        updateProgress();
+      });
+    }
   });
   updateProgress();
 }
